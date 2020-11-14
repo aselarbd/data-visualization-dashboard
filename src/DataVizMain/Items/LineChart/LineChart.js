@@ -7,6 +7,7 @@ import {scaleLinear, extent, scaleTime, timeFormat , format} from 'd3';
 import XAxis from "../Shared/XAxis/XAxis";
 import YAxis from "../Shared/YAxis/YAxis";
 import Lines from "../Shared/Lines/Lines";
+import Legend from "../Shared/Legend/Legend";
 
 
 const LineChart = () => {
@@ -18,10 +19,10 @@ const LineChart = () => {
         {var:"value", fun: d => parseFloat(d)}
         ];
     const dataFilterTypesColors =[
-        {type:"NJ", color:"#137B80"},
-        {type:"NY", color:"#9A3E25"},
-        {type:"WA", color:"#684664"},
-        {type:"LA", color:"#E25A42"}
+        {name:"New Jersey", type:"NJ", color:"#137B80"},
+        {name:"New York", type:"NY", color:"#9A3E25"},
+        {name:"Washington", type:"WA", color:"#684664"},
+        {name:"Los Angeles", type:"LA", color:"#E25A42"}
     ];
     const filterVariable = "place";
 
@@ -34,6 +35,11 @@ const LineChart = () => {
     const yLabelOffset=30;
     const yAxisTitle = "Temperature";
     const yFormat ="";
+
+    const LegendTickRadius = 10;
+    const colorLegendTitle = "Cities";
+    const LegendTickTextOffset = 20;
+    const LegendTickSpacing = 50;
 
 
     // Load Data
@@ -65,7 +71,7 @@ const LineChart = () => {
 
 
     // Visual tweaks
-    const margin = { top: 30, right: 30, bottom: 60, left: 60 };
+    const margin = { top: 30, right: 180, bottom: 60, left: 60 };
     const innerHeight = CONSTANTS.SVG_HEIGHT - margin.top - margin.bottom;
     const innerWidth = CONSTANTS.SVG_WIDTH - margin.left - margin.right;
 
@@ -130,6 +136,16 @@ const LineChart = () => {
                         xScale={xScale}
                         yValue={yValue}
                         xValue={xValue}
+                    />
+
+                    {/*  Legend  */}
+                    <Legend
+                        innerWidth={innerWidth}
+                        colorScale={dataFilterTypesColors}
+                        tickRadius={LegendTickRadius}
+                        colorLegendTitle={colorLegendTitle}
+                        tickTextOffset={LegendTickTextOffset}
+                        tickSpacing = {LegendTickSpacing}
                     />
                 </g>
             </svg>
