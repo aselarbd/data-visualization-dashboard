@@ -1,9 +1,11 @@
 import React from 'react';
+import GasVYear from "../Gas/GasVYear/GasVYear";
 
 const Rainfall = () => {
     return (
         <div>
-            Rainfall
+            <GasVYear/>
+            <GasVYear/>
         </div>
     );
 };

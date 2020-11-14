@@ -135,6 +135,7 @@ class Admin extends Component {
           <AdminNavbar
             {...this.props}
             brandText={this.getBrandText(this.props.location.pathname)}
+            style={{marginBottom:"20px"}}
           />
           <Switch>{this.getRoutes(routes)}</Switch>
         </div>

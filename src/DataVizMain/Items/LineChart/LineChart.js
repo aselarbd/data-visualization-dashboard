@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import * as CONSTANTS from '../Shared/Constants';
 import useLoadData from "../Shared/useLoadData";
-import { Dimmer, Loader,Image, Segment } from 'semantic-ui-react';
+import { Dimmer, Loader,Image, Segment,Header,Grid } from 'semantic-ui-react';
 import GridLayout from "../Shared/GridLayout/GridLayout";
 import {scaleLinear, extent, scaleTime, timeFormat , format} from 'd3';
 import XAxis from "../Shared/XAxis/XAxis";
@@ -12,7 +12,7 @@ import Legend from "../Shared/Legend/Legend";
 
 const LineChart = ({dataURL, dataFormat,dataFilterTypesColors, filterVariable, xFormat, xAxisTitle, xAxisValuesOffset,
                        xLabelOffset, yAxisValuesOffset, yLabelOffset, yAxisTitle, yFormat, LegendTickRadius,
-                       colorLegendTitle, LegendTickTextOffset, LegendTickSpacing, faceOpacity, marginValues
+                       colorLegendTitle, LegendTickTextOffset, LegendTickSpacing, faceOpacity, marginValues,ChartTitle
 }) => {
 
 
@@ -79,71 +79,91 @@ const LineChart = ({dataURL, dataFormat,dataFilterTypesColors, filterVariable, x
 
     return (
         <>
-            <svg width={CONSTANTS.SVG_WIDTH} height={CONSTANTS.SVG_HEIGHT}>
-                <g transform={`translate(${margin.left},${margin.top})`}>
+            <Grid >
+                <Grid.Row>
+                </Grid.Row>
+                <Grid.Row>
+                    <Grid.Column width={1}>
+                    </Grid.Column>
+                    <Grid.Column width={14}>
+                        <Segment className="chart-title nav nav-tabs">
+                            <Header as='h2' textAlign='center'>
+                                {ChartTitle}
+                            </Header>
+                        </Segment>
+                    </Grid.Column>
+                    <Grid.Column width={1}>
+                    </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
 
-                    {/* Grid Layout of the chart */}
-                    <GridLayout
-                        xScale={xScale}
-                        yScale={yScale}
-                        innerHeight={innerHeight}
-                        innerWidth={innerWidth}
-                    />
+                    <svg width={CONSTANTS.SVG_WIDTH} height={CONSTANTS.SVG_HEIGHT}>
+                        <g transform={`translate(${margin.left},${margin.top})`}>
 
-                    {/* X axis */}
-                    <XAxis
-                        innerHeight={innerHeight}
-                        innerWidth={innerWidth}
-                        xLabelOffset={xLabelOffset}
-                        xAxisTitle={xAxisTitle}
-                        xScale={xScale}
-                        xAxisValuesOffset={xAxisValuesOffset}
-                        tickFormat={xAxisTickFormat}
-                    />
+                            {/* Grid Layout of the chart */}
+                            <GridLayout
+                                xScale={xScale}
+                                yScale={yScale}
+                                innerHeight={innerHeight}
+                                innerWidth={innerWidth}
+                            />
 
-                    {/*  Y axis   */}
-                    <YAxis
-                        innerHeight={innerHeight}
-                        yAxisValuesOffset={yAxisValuesOffset}
-                        yLabelOffset={yLabelOffset}
-                        yScale={yScale}
-                        yAxisTitle={yAxisTitle}
-                        tickFormat={yAxisTickFormat}
-                    />
+                            {/* X axis */}
+                            <XAxis
+                                innerHeight={innerHeight}
+                                innerWidth={innerWidth}
+                                xLabelOffset={xLabelOffset}
+                                xAxisTitle={xAxisTitle}
+                                xScale={xScale}
+                                xAxisValuesOffset={xAxisValuesOffset}
+                                tickFormat={xAxisTickFormat}
+                            />
 
-                    {/* Lines */}
-                    <g opacity={hoveredValue ? faceOpacity:1}>
-                        <Lines
-                            dataAndColors={dataAndColors}
-                            yScale={yScale}
-                            xScale={xScale}
-                            yValue={yValue}
-                            xValue={xValue}
-                        />
-                    </g>
-                    <Lines
-                        dataAndColors={filteredData}
-                        yScale={yScale}
-                        xScale={xScale}
-                        yValue={yValue}
-                        xValue={xValue}
-                    />
+                            {/*  Y axis   */}
+                            <YAxis
+                                innerHeight={innerHeight}
+                                yAxisValuesOffset={yAxisValuesOffset}
+                                yLabelOffset={yLabelOffset}
+                                yScale={yScale}
+                                yAxisTitle={yAxisTitle}
+                                tickFormat={yAxisTickFormat}
+                            />
 
-                    {/*  Legend  */}
-                    <Legend
-                        innerWidth={innerWidth}
-                        colorScale={dataFilterTypesColors}
-                        tickRadius={LegendTickRadius}
-                        colorLegendTitle={colorLegendTitle}
-                        tickTextOffset={LegendTickTextOffset}
-                        tickSpacing = {LegendTickSpacing}
-                        onHover={setHoveredValue}
-                        hoveredValue={hoveredValue}
-                        faceOpacity={faceOpacity}
-                    />
-                </g>
-            </svg>
+                            {/* Lines */}
+                            <g opacity={hoveredValue ? faceOpacity:1}>
+                                <Lines
+                                    dataAndColors={dataAndColors}
+                                    yScale={yScale}
+                                    xScale={xScale}
+                                    yValue={yValue}
+                                    xValue={xValue}
+                                />
+                            </g>
+                            <Lines
+                                dataAndColors={filteredData}
+                                yScale={yScale}
+                                xScale={xScale}
+                                yValue={yValue}
+                                xValue={xValue}
+                            />
 
+                            {/*  Legend  */}
+                            <Legend
+                                innerWidth={innerWidth}
+                                colorScale={dataFilterTypesColors}
+                                tickRadius={LegendTickRadius}
+                                colorLegendTitle={colorLegendTitle}
+                                tickTextOffset={LegendTickTextOffset}
+                                tickSpacing = {LegendTickSpacing}
+                                onHover={setHoveredValue}
+                                hoveredValue={hoveredValue}
+                                faceOpacity={faceOpacity}
+                            />
+                        </g>
+                    </svg>
+
+                </Grid.Row>
+            </Grid>
         </>
     );
 };
