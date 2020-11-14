@@ -1,7 +1,8 @@
 import React from 'react';
 import ColorLegend from "./ColorLegend";
 
-const Legend = ({innerWidth,colorLegendTitle, tickRadius, colorScale, tickTextOffset=12, tickSpacing=22}) => {
+const Legend = ({innerWidth,colorLegendTitle, tickRadius,
+                    colorScale, tickTextOffset=12, tickSpacing=22, onHover, hoveredValue, faceOpacity}) => {
     return (
         <g transform={`translate(${innerWidth + 60}, 60)`}>
             <text
@@ -17,6 +18,9 @@ const Legend = ({innerWidth,colorLegendTitle, tickRadius, colorScale, tickTextOf
                 tickTextOffset={tickTextOffset}
                 tickRadius={tickRadius}
                 colorScale={colorScale}
+                onHover={onHover}
+                hoveredValue={hoveredValue}
+                faceOpacity={faceOpacity}
             />
         </g>
     );

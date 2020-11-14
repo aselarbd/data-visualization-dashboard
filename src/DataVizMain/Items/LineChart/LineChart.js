@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import * as CONSTANTS from '../Shared/Constants';
 import useLoadData from "../Shared/useLoadData";
 import { Dimmer, Loader,Image, Segment } from 'semantic-ui-react';
@@ -29,7 +29,7 @@ const LineChart = () => {
     const xFormat ="%Y";
     const xAxisTitle = "Years";
     const xAxisValuesOffset = 15;
-    const xLabelOffset = 50;
+    const xLabelOffset = 60;
 
     const yAxisValuesOffset =10;
     const yLabelOffset=30;
@@ -41,9 +41,15 @@ const LineChart = () => {
     const LegendTickTextOffset = 20;
     const LegendTickSpacing = 50;
 
+    const faceOpacity = 0.2;
+
 
     // Load Data
     let data = useLoadData(dataURL, dataFormat);
+
+    // Interactive Legend
+    const [hoveredValue, setHoveredValue] = useState(null);
+
     if (!data){
         return (
             <div className="svg-skin" >
@@ -63,6 +69,7 @@ const LineChart = () => {
     for (let i =0; i < dataFilterTypesColors.length; i++){
         dataAndColors.push(
             {
+                type:dataFilterTypesColors[i].type,
                 data:data.filter(d=> d[filterVariable] === dataFilterTypesColors[i].type),
                 color:dataFilterTypesColors[i].color
             }
@@ -71,7 +78,7 @@ const LineChart = () => {
 
 
     // Visual tweaks
-    const margin = { top: 30, right: 180, bottom: 60, left: 60 };
+    const margin = { top: 30, right: 180, bottom: 70, left: 60 };
     const innerHeight = CONSTANTS.SVG_HEIGHT - margin.top - margin.bottom;
     const innerWidth = CONSTANTS.SVG_WIDTH - margin.left - margin.right;
 
@@ -93,6 +100,9 @@ const LineChart = () => {
         .domain(extent(data, yValue ))
         .range([innerHeight, 0])
         .nice();
+
+    // Interactive Legend
+    const filteredData = dataAndColors.filter(item => item.type === hoveredValue)
 
 
     return (
@@ -130,8 +140,17 @@ const LineChart = () => {
                     />
 
                     {/* Lines */}
+                    <g opacity={hoveredValue ? faceOpacity:1}>
+                        <Lines
+                            dataAndColors={dataAndColors}
+                            yScale={yScale}
+                            xScale={xScale}
+                            yValue={yValue}
+                            xValue={xValue}
+                        />
+                    </g>
                     <Lines
-                        dataAndColors={dataAndColors}
+                        dataAndColors={filteredData}
                         yScale={yScale}
                         xScale={xScale}
                         yValue={yValue}
@@ -146,6 +165,9 @@ const LineChart = () => {
                         colorLegendTitle={colorLegendTitle}
                         tickTextOffset={LegendTickTextOffset}
                         tickSpacing = {LegendTickSpacing}
+                        onHover={setHoveredValue}
+                        hoveredValue={hoveredValue}
+                        faceOpacity={faceOpacity}
                     />
                 </g>
             </svg>
