@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import LineChart from "../Items/LineChart/LineChart";
 
 const Gas = () => {
