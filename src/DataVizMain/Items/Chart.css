@@ -29,3 +29,12 @@ svg{
 .tick line {
     stroke:#C0C0BB;
 }
+
+.tick text {
+    fill:#635F5D;
+}
+
+.axis-label{
+    font-size: 1.5em;
+    fill:#635F5D;
+}
