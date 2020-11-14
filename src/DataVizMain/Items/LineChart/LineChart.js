@@ -6,19 +6,30 @@ import GridLayout from "../Shared/GridLayout/GridLayout";
 import {scaleLinear, extent, scaleTime, timeFormat , format} from 'd3';
 import XAxis from "../Shared/XAxis/XAxis";
 import YAxis from "../Shared/YAxis/YAxis";
+import Lines from "../Shared/Lines/Lines";
 
 
 const LineChart = () => {
 
     // Things that can come from parent component
+    const dataURL ='/data/data.csv'
     const dataFormat = [
         {var:"date",fun: d => new Date(d)},
         {var:"value", fun: d => parseFloat(d)}
         ];
+    const dataFilterTypesColors =[
+        {type:"NJ", color:"#137B80"},
+        {type:"NY", color:"#9A3E25"},
+        {type:"WA", color:"#684664"},
+        {type:"LA", color:"#E25A42"}
+    ];
+    const filterVariable = "place";
+
     const xFormat ="%Y";
     const xAxisTitle = "Years";
     const xAxisValuesOffset = 15;
     const xLabelOffset = 50;
+
     const yAxisValuesOffset =10;
     const yLabelOffset=30;
     const yAxisTitle = "Temperature";
@@ -26,7 +37,7 @@ const LineChart = () => {
 
 
     // Load Data
-    let data = useLoadData('/data/data.csv', dataFormat);
+    let data = useLoadData(dataURL, dataFormat);
     if (!data){
         return (
             <div className="svg-skin" >
@@ -40,6 +51,18 @@ const LineChart = () => {
 
         );
     }
+
+    //data classification
+    let dataAndColors = [];
+    for (let i =0; i < dataFilterTypesColors.length; i++){
+        dataAndColors.push(
+            {
+                data:data.filter(d=> d[filterVariable] === dataFilterTypesColors[i].type),
+                color:dataFilterTypesColors[i].color
+            }
+        )
+    }
+
 
     // Visual tweaks
     const margin = { top: 30, right: 30, bottom: 60, left: 60 };
@@ -64,7 +87,6 @@ const LineChart = () => {
         .domain(extent(data, yValue ))
         .range([innerHeight, 0])
         .nice();
-
 
 
     return (
@@ -93,14 +115,22 @@ const LineChart = () => {
 
                     {/*  Y axis   */}
                     <YAxis
-                    innerHeight={innerHeight}
-                    yAxisValuesOffset={yAxisValuesOffset}
-                    yLabelOffset={yLabelOffset}
-                    yScale={yScale}
-                    yAxisTitle={yAxisTitle}
-                    tickFormat={yAxisTickFormat}
+                        innerHeight={innerHeight}
+                        yAxisValuesOffset={yAxisValuesOffset}
+                        yLabelOffset={yLabelOffset}
+                        yScale={yScale}
+                        yAxisTitle={yAxisTitle}
+                        tickFormat={yAxisTickFormat}
                     />
 
+                    {/* Lines */}
+                    <Lines
+                        dataAndColors={dataAndColors}
+                        yScale={yScale}
+                        xScale={xScale}
+                        yValue={yValue}
+                        xValue={xValue}
+                    />
                 </g>
             </svg>
 
