@@ -10,38 +10,10 @@ import Lines from "../Shared/Lines/Lines";
 import Legend from "../Shared/Legend/Legend";
 
 
-const LineChart = () => {
-
-    // Things that can come from parent component
-    const dataURL ='/data/data.csv'
-    const dataFormat = [
-        {var:"date",fun: d => new Date(d)},
-        {var:"value", fun: d => parseFloat(d)}
-        ];
-    const dataFilterTypesColors =[
-        {name:"New Jersey", type:"NJ", color:"#137B80"},
-        {name:"New York", type:"NY", color:"#9A3E25"},
-        {name:"Washington", type:"WA", color:"#684664"},
-        {name:"Los Angeles", type:"LA", color:"#E25A42"}
-    ];
-    const filterVariable = "place";
-
-    const xFormat ="%Y";
-    const xAxisTitle = "Years";
-    const xAxisValuesOffset = 15;
-    const xLabelOffset = 60;
-
-    const yAxisValuesOffset =10;
-    const yLabelOffset=30;
-    const yAxisTitle = "Temperature";
-    const yFormat ="";
-
-    const LegendTickRadius = 10;
-    const colorLegendTitle = "Cities";
-    const LegendTickTextOffset = 20;
-    const LegendTickSpacing = 50;
-
-    const faceOpacity = 0.2;
+const LineChart = ({dataURL, dataFormat,dataFilterTypesColors, filterVariable, xFormat, xAxisTitle, xAxisValuesOffset,
+                       xLabelOffset, yAxisValuesOffset, yLabelOffset, yAxisTitle, yFormat, LegendTickRadius,
+                       colorLegendTitle, LegendTickTextOffset, LegendTickSpacing, faceOpacity, marginValues
+}) => {
 
 
     // Load Data
@@ -78,7 +50,7 @@ const LineChart = () => {
 
 
     // Visual tweaks
-    const margin = { top: 30, right: 180, bottom: 70, left: 60 };
+    const margin = marginValues;
     const innerHeight = CONSTANTS.SVG_HEIGHT - margin.top - margin.bottom;
     const innerWidth = CONSTANTS.SVG_WIDTH - margin.left - margin.right;
 
