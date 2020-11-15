@@ -1,11 +1,12 @@
 import React from 'react';
-import GasVYear from "../Gas/GasVYear/GasVYear";
+import MultipleGreenGasVYear from "../Gas/GreenGasCharts/MultipleGreenGasVYear";
+import GreenGasAndCO2VYear from "../Gas/GreenGasCharts/GreenGasAndCO2VYear";
 
 const Rainfall = () => {
     return (
         <div>
-            <GasVYear/>
-            <GasVYear/>
+            <MultipleGreenGasVYear/>
+            <GreenGasAndCO2VYear/>
         </div>
     );
 };

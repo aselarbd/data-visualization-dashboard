@@ -4,7 +4,7 @@ import ColorLegend from "./ColorLegend";
 const Legend = ({innerWidth,colorLegendTitle, tickRadius,
                     colorScale, tickTextOffset=12, tickSpacing=22, onHover, hoveredValue, faceOpacity}) => {
     return (
-        <g transform={`translate(${innerWidth + 60}, 60)`}>
+        <g transform={`translate(${innerWidth + 50}, 60)`}>
             <text
                 x={35}
                 y={-25}

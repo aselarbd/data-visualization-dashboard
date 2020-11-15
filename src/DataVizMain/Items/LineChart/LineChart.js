@@ -12,7 +12,8 @@ import Legend from "../Shared/Legend/Legend";
 
 const LineChart = ({dataURL, dataFormat,dataFilterTypesColors, filterVariable, xFormat, xAxisTitle, xAxisValuesOffset,
                        xLabelOffset, yAxisValuesOffset, yLabelOffset, yAxisTitle, yFormat, LegendTickRadius,
-                       colorLegendTitle, LegendTickTextOffset, LegendTickSpacing, faceOpacity, marginValues,ChartTitle
+                       colorLegendTitle, LegendTickTextOffset, LegendTickSpacing, faceOpacity, marginValues,ChartTitle,
+                        xValue, yValue
 }) => {
 
 
@@ -46,7 +47,7 @@ const LineChart = ({dataURL, dataFormat,dataFilterTypesColors, filterVariable, x
                 color:dataFilterTypesColors[i].color
             }
         )
-    }
+    }console.log(data);
 
 
     // Visual tweaks
@@ -55,10 +56,8 @@ const LineChart = ({dataURL, dataFormat,dataFilterTypesColors, filterVariable, x
     const innerWidth = CONSTANTS.SVG_WIDTH - margin.left - margin.right;
 
     // Axis values
-    const xValue = d => d.date;
     const xAxisTickFormat = tickValue => timeFormat(xFormat)(tickValue);
 
-    const yValue = d => d.value;
     const yAxisTickFormat = tickValue => format(yFormat)(tickValue)
 
 

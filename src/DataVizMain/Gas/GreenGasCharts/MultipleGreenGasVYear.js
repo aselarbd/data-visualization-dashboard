@@ -1,43 +1,45 @@
 import React from 'react';
 import LineChart from "../../Items/LineChart/LineChart";
 
-const GasVYear = () => {
+const MultipleGreenGasVYear = () => {
 
-    // ------------------------------------ Greenhouse gas over years chart tweaks -----------------------------------
+    // ------------------------------------ Multiple Greenhouse gas over years comparison chart tweaks -----------------------------------
 
     // Data URL
-    const GreenGas_dataURL ='/data/data.csv';
+    const GreenGas_dataURL ='/data/ggComp.csv';
 
     //Data formatting
     const GreenGas_dataFormat = [
-        {var:"date",fun: d => new Date(d)},
+        {var:"year",fun: d => new Date(d)},
         {var:"value", fun: d => parseFloat(d)}
     ];
 
     // Data filtering
     const GreenGas_dataFilterTypesColors =[
-        {name:"New Jersey", type:"NJ", color:"#137B80"},
-        {name:"New York", type:"NY", color:"#9A3E25"},
-        {name:"Washington", type:"WA", color:"#684664"},
-        {name:"Los Angeles", type:"LA", color:"#E25A42"}
+        {name:"Carbon Monoxide", type:"CO", color:"#9A3E25"},
+        {name:"Nitrogen Oxides", type:"NOX", color:"#7C715E"},
+        {name:"Sulphur Oxides", type:"SOX", color:"#6BBBA1"},
+        {name:"VOC", type:"VOC", color:"#E3BA22"}
     ];
-    const GreenGas_filterVariable = "place";
+    const GreenGas_filterVariable = "gas";
 
     // X values
     const GreenGas_xFormat ="%Y";
     const GreenGas_xAxisTitle = "Years";
     const GreenGas_xAxisValuesOffset = 15;
     const GreenGas_xLabelOffset = 60;
+    const GreenGas_xValue= d => d.year;
 
     // Y values
     const GreenGas_yAxisValuesOffset =10;
-    const GreenGas_yLabelOffset=30;
-    const GreenGas_yAxisTitle = "Temperature";
+    const GreenGas_yLabelOffset=50;
+    const GreenGas_yAxisTitle = "Gas Emissions (Kg/Cap)";
     const GreenGas_yFormat ="";
+    const GreenGas_yValue=d => d.value;
 
     // Legend
     const GreenGas_LegendTickRadius = 10;
-    const GreenGas_colorLegendTitle = "Cities";
+    const GreenGas_colorLegendTitle = "Gases";
     const GreenGas_LegendTickTextOffset = 20;
     const GreenGas_LegendTickSpacing = 50;
 
@@ -45,10 +47,10 @@ const GasVYear = () => {
     const GreenGas_faceOpacity = 0.2;
 
     // Layout
-    const GreenGas_marginValues ={ top: 30, right: 180, bottom: 70, left: 60 }
+    const GreenGas_marginValues ={ top: 30, right: 200, bottom: 70, left: 80 }
 
     //Title
-    const GreenGas_ChartTitle ="Greenhouse gases over time";
+    const GreenGas_ChartTitle ="Greenhouse gases Comparison over time";
 
 
     return (
@@ -73,9 +75,11 @@ const GasVYear = () => {
                 faceOpacity={GreenGas_faceOpacity}
                 marginValues={GreenGas_marginValues}
                 ChartTitle={GreenGas_ChartTitle}
+                xValue={GreenGas_xValue}
+                yValue={GreenGas_yValue}
             />
         </div>
     );
 };
 
-export default GasVYear;
+export default MultipleGreenGasVYear;
