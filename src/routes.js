@@ -46,34 +46,34 @@ const dashboardRoutes = [
     component: Temp,
     layout: "/admin"
   },
-  {
-    path: "/dashboard",
-    name: "Dashboard",
-    icon: "pe-7s-graph",
-    component: Dashboard,
-    layout: "/admin"
-  },
-  {
-    path: "/table",
-    name: "Table List",
-    icon: "pe-7s-note2",
-    component: TableList,
-    layout: "/admin"
-  },
-  {
-    path: "/typography",
-    name: "Typography",
-    icon: "pe-7s-news-paper",
-    component: Typography,
-    layout: "/admin"
-  },
-  {
-    path: "/icons",
-    name: "Icons",
-    icon: "pe-7s-science",
-    component: Icons,
-    layout: "/admin"
-  }
+  // {
+  //   path: "/dashboard",
+  //   name: "Dashboard",
+  //   icon: "pe-7s-graph",
+  //   component: Dashboard,
+  //   layout: "/admin"
+  // },
+  // {
+  //   path: "/table",
+  //   name: "Table List",
+  //   icon: "pe-7s-note2",
+  //   component: TableList,
+  //   layout: "/admin"
+  // },
+  // {
+  //   path: "/typography",
+  //   name: "Typography",
+  //   icon: "pe-7s-news-paper",
+  //   component: Typography,
+  //   layout: "/admin"
+  // },
+  // {
+  //   path: "/icons",
+  //   name: "Icons",
+  //   icon: "pe-7s-science",
+  //   component: Icons,
+  //   layout: "/admin"
+  // }
 
 ];
 

@@ -50,3 +50,8 @@ svg{
     color:#635F5D;
     margin-top: 30px;
 }
+
+.maps path {
+    fill: #0F8C79;
+    stroke: #C0C0BB;
+}

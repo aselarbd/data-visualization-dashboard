@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import useLoadData from "../Shared/useLoadData";
+import useLoadData from "../Shared/LoadData/useLoadData";
 import {Dimmer, Loader, Segment} from "semantic-ui-react";
 import * as CONSTANTS from "../Shared/Constants";
 import {pie, arc} from 'd3';

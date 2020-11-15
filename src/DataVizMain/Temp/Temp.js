@@ -1,10 +1,12 @@
 import React from 'react';
-import MultipleGreenGasVYear from "../Gas/GreenGasCharts/MultipleGreenGasVYear";
+import MapChart from "../Items/MapChart/MapChart";
+import YearlyTempAndGreenGas from "./TempCharts/YearlyTempAndGreenGas";
 
 const Temp = () => {
     return (
         <div>
-            <MultipleGreenGasVYear/>
+            <MapChart/>
+            <YearlyTempAndGreenGas/>
         </div>
     );
 };

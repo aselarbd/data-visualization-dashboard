@@ -18,7 +18,8 @@
     "react-scripts": "3.0.0",
     "react-toggle": "4.0.2",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.0.1"
+    "semantic-ui-react": "^2.0.1",
+    "topojson": "^3.0.2"
   },
   "devDependencies": {
     "@types/googlemaps": "3.30.19",

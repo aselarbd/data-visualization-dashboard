@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import * as CONSTANTS from '../Shared/Constants';
-import useLoadData from "../Shared/useLoadData";
+import useLoadData from "../Shared/LoadData/useLoadData";
 import { Dimmer, Loader,Image, Segment,Header,Grid } from 'semantic-ui-react';
 import GridLayout from "../Shared/GridLayout/GridLayout";
 import {scaleLinear, extent, scaleTime, timeFormat , format} from 'd3';
