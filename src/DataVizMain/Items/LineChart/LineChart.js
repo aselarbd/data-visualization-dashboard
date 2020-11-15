@@ -30,7 +30,6 @@ const LineChart = ({dataURL, dataFormat,dataFilterTypesColors, filterVariable, x
                     <Dimmer active inverted>
                         <Loader size='large'>Loading... !!!</Loader>
                     </Dimmer>
-                    <Image src='/images/wireframe/paragraph.png' />
                 </Segment>
             </div>
 
@@ -47,7 +46,7 @@ const LineChart = ({dataURL, dataFormat,dataFilterTypesColors, filterVariable, x
                 color:dataFilterTypesColors[i].color
             }
         )
-    }console.log(data);
+    }
 
 
     // Visual tweaks
